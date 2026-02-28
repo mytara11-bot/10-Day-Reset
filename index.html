@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Day Nervous System Reset | Everyday Modern... But Why?</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lightweight library for the pastel confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Nunito', sans-serif; 
+            background: linear-gradient(135deg, #Fdfbfb, #F5E6E8, #F3EBF5, #E6F0F5, #E6EBE7, #Fdfbfb);
+            background-size: 400% 400%;
+            animation: aurora-breathe 20s ease-in-out infinite;
+            color: #4A4A4A;
+            -webkit-tap-highlight-color: transparent;
+        }
+        h1, h2, h3, .serif { font-family: 'Lora', serif; }
+        .text-brand-dark { color: #1A111A; } 
+        
+        @keyframes aurora-breathe {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,1);
+            border-left: 1px solid rgba(255,255,255,1);
+            box-shadow: 8px 8px 24px rgba(0,0,0,0.03), -8px -8px 24px rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+        }
+
+        .day-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 5rem; /* Collapsed state */
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .day-card.expanded {
+            max-height: 50rem; /* Expanded state */
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 100%);
+            cursor: default;
+        }
+        
+        .day-card.completed {
+            opacity: 0.7;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .progress-bar { transition: width 0.8s ease-in-out; }
+        
+        /* Blends the white background of the uploaded graphic */
+        .blend-graphic { mix-blend-mode: multiply; }
+        
+        /* Custom Checkbox */
+        .checkbox-wrapper-12 {
+            position: relative;
+        }
+        .checkbox-wrapper-12 > svg {
+            position: absolute;
+            top: -130%;
+            left: -170%;
+            width: 110px;
+            pointer-events: none;
+        }
+        .checkbox-wrapper-12 * {
+            box-sizing: border-box;
+        }
+        .checkbox-wrapper-12 input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            margin: 0;
+        }
+        .checkbox-wrapper-12 input[type="checkbox"]:focus {
+            outline: 0;
+        }
+        .checkbox-wrapper-12 .cbx {
+            width: 24px;
+            height: 24px;
+            top: calc(50vh - 12px);
+            left: calc(50vw - 12px);
+        }
+        .checkbox-wrapper-12 .cbx input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #bfdbfe;
+            border-radius: 50%;
+        }
+        .checkbox-wrapper-12 .cbx label {
+            width: 24px;
+            height: 24px;
+            background: none;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-filter: url("#goo-12");
+            filter: url("#goo-12");
+            transform: translate3d(0, 0, 0);
+            pointer-events: none;
+        }
+        .checkbox-wrapper-12 .cbx svg {
+            position: absolute;
+            top: 5px;
+            left: 4px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .checkbox-wrapper-12 .cbx svg path {
+            stroke: #fff;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 19;
+            stroke-dashoffset: 19;
+            transition: stroke-dashoffset 0.3s ease;
+            transition-delay: 0.2s;
+        }
+        .checkbox-wrapper-12 .cbx input:checked + label {
+            animation: splash-12 0.6s ease forwards;
+        }
+        .checkbox-wrapper-12 .cbx input:checked + label + svg path {
+            stroke-dashoffset: 0;
+        }
+        @-moz-keyframes splash-12 {
+            40% { background: #A3B1A6; box-shadow: 0 -18px 0 -8px #A3B1A6, 16px -8px 0 -8px #A3B1A6, 16px 8px 0 -8px #A3B1A6, 0 18px 0 -8px #A3B1A6, -16px 8px 0 -8px #A3B1A6, -16px -8px 0 -8px #A3B1A6; }
+            100% { background: #A3B1A6; box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent; }
+        }
+        @-webkit-keyframes splash-12 {
+            40% { background: #A3B1A6; box-shadow: 0 -18px 0 -8px #A3B1A6, 16px -8px 0 -8px #A3B1A6, 16px 8px 0 -8px #A3B1A6, 0 18px 0 -8px #A3B1A6, -16px 8px 0 -8px #A3B1A6, -16px -8px 0 -8px #A3B1A6; }
+            100% { background: #A3B1A6; box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent; }
+        }
+        @keyframes splash-12 {
+            40% { background: #A3B1A6; box-shadow: 0 -18px 0 -8px #A3B1A6, 16px -8px 0 -8px #A3B1A6, 16px 8px 0 -8px #A3B1A6, 0 18px 0 -8px #A3B1A6, -16px 8px 0 -8px #A3B1A6, -16px -8px 0 -8px #A3B1A6; }
+            100% { background: #A3B1A6; box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col items-center p-4 md:p-12 overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="text-center w-full max-w-md mb-8 mt-6 flex flex-col items-center relative z-10">
+        <!-- The Uploaded Watercolor Graphic -->
+        <img src="logo.png" alt="Unfolding Girl" class="w-40 h-40 blend-graphic opacity-90 mb-2 drop-shadow-sm transition-transform duration-700 hover:scale-105" onerror="this.style.display='none'">
+        
+        <h2 class="text-[10px] uppercase tracking-[0.3em] text-stone-400 font-bold mb-3 mt-4">The Nervous System Reset</h2>
+        <h1 class="text-4xl md:text-5xl serif italic text-brand-dark drop-shadow-sm">10 Days Back<br>to Centre</h1>
+        <p class="text-stone-500 mt-4 text-sm font-light px-4 leading-relaxed">You don't need to be fixed. You just need to be gently guided back to yourself. Go at your own pace.</p>
+    </header>
+
+    <!-- Progress Section -->
+    <div class="w-full max-w-md mb-8 glass-card rounded-3xl p-6 relative z-10">
+        <div class="flex justify-between items-end mb-3">
+            <h3 class="text-lg serif text-brand-dark font-medium">Your Journey</h3>
+            <span class="text-xs font-bold text-stone-400 tracking-widest uppercase"><span id="days-completed">0</span>/10 Days</span>
+        </div>
+        <div class="w-full h-3 bg-white/50 rounded-full overflow-hidden border border-white">
+            <div id="progress-bar-fill" class="h-full bg-gradient-to-r from-[#D5C1DF] to-[#A3B1A6] progress-bar w-0"></div>
+        </div>
+    </div>
+
+    <!-- The 10 Day Container -->
+    <main id="days-container" class="w-full max-w-md space-y-4 pb-20 relative z-10">
+        <!-- Javascript will inject the 10 days here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-8 text-center pb-12 w-full max-w-md relative z-10">
+        <div class="glass-card rounded-[2rem] p-8 mb-12">
+            <h4 class="serif italic text-xl text-brand-dark mb-4">Want more support?</h4>
+            <p class="text-xs text-stone-500 mb-6 leading-relaxed">If you found this 10-day reset helpful, explore the full <strong>When Big Feelings Hit</strong> guide. It includes deep-dive chapters, printable calming cards, and the interactive Pocket Sanctuary app for instant relief.</p>
+            <!-- Replace this link with your Stan Store link when ready -->
+            <a href="https://stan.store/your-store-link-here" target="_blank" class="inline-block bg-[#A3B1A6] text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-[#8C9B90] transition shadow-md w-full">Explore When Big Feelings Hit</a>
+        </div>
+        
+        <p class="text-[10px] uppercase tracking-widest text-stone-400 font-bold">With you in the moment, Barb</p>
+        <p class="text-[9px] uppercase tracking-[0.2em] text-stone-400/70 font-bold mt-1">Everyday Modern... But Why?</p>
+    </footer>
+
+    <!-- SVG for Checkbox animation -->
+    <svg style="width:0;height:0;position:absolute;">
+        <filter id="goo-12">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></feColorMatrix>
+            <feBlend in="SourceGraphic" in2="goo-12"></feBlend>
+        </filter>
+    </svg>
+
+    <script>
+        // Data from the PDF Guide
+        const journeyData = [
+            {
+                day: 1,
+                title: "Notice Without Judgment",
+                practice: "Set three gentle reminders today. When the reminder goes off, take 30 seconds to notice tension in your body, speed of thoughts, or emotional temperature. Name what you notice without judgment (e.g., 'I notice my shoulders are tight' not 'I'm so stressed').",
+                why: "You can't shift what you don't see. Overstimulation becomes our baseline. Awareness is the first step back to centre.",
+                shift: "This practice trains your nervous system to pause. That pause becomes the space where you can choose calm instead of reactivity."
+            },
+            {
+                day: 2,
+                title: "Create a Morning Anchor",
+                practice: "Before checking your phone, sit up in bed. Take five deep breaths (in 4, hold 4, out 6). Set one intention: 'Today, I move at my own pace' or 'I choose calm over chaos.'",
+                why: "The first moments of your day set your nervous system's tone. A morning anchor gives you a baseline of calm to return to.",
+                shift: "This five-minute practice creates a reference point. When chaos builds, you can remember: 'I started calm. I can return to calm.'"
+            },
+            {
+                day: 3,
+                title: "Protect Your Input",
+                practice: "Choose one input to reduce today: news, social media, or notifications. Set a specific boundary (e.g., 'No phone for the first hour awake'). When you reach for the input out of habit, pause and breathe instead.",
+                why: "We're consuming information at a rate our brains weren't designed for. Protecting your input isn't about disconnection—it's about intentional connection.",
+                shift: "Reducing input by even 20% can decrease mental clutter by 50%. Your brain finally has space to process, rest, and restore."
+            },
+            {
+                day: 4,
+                title: "Move to Release",
+                practice: "Set a timer for 10 minutes. Move in any way that feels good: stretch, dance, walk, shake. Focus on sensation, not performance. Notice where you hold tension and breathe into those spaces.",
+                why: "When your nervous system is overwhelmed, stress hormones get trapped in your tissues. Gentle movement signals to your body: 'We're safe. We can let go.'",
+                shift: "Ten minutes of intentional movement can shift your nervous system from fight-or-flight to rest-and-digest."
+            },
+            {
+                day: 5,
+                title: "Practice the Pause",
+                practice: "When something triggers you today (a message, a thought, a demand), pause for three breaths before responding. Tell yourself: 'I have time. I can choose my response.'",
+                why: "Overstimulation makes us reactive. The pause gives you back your power to choose how you engage with the world.",
+                shift: "This practice rewires your brain's reactivity patterns. Over time, the pause becomes automatic."
+            },
+            {
+                day: 6,
+                title: "Simplify Your Environment",
+                practice: "Choose one space you use daily (desk, bedroom, phone home screen). Remove or organize three things that create visual noise. Notice how the simplified space feels.",
+                why: "Clutter—physical and digital—is constant low-level stimulation. Simplifying gives your nervous system permission to rest.",
+                shift: "When your space supports stillness, you naturally feel more grounded and less overwhelmed."
+            },
+            {
+                day: 7,
+                title: "Nourish, Don't Numb",
+                practice: "Identify one go-to numbing behavior (scrolling, snacking, overworking). When the urge arises, pause and ask: 'What do I actually need right now?' Choose one nourishing alternative: a walk, a conversation, rest.",
+                why: "Numbing gives temporary relief but deepens the overwhelm. Nourishing addresses the root need and actually restores you.",
+                shift: "Each time you choose nourishment over numbing, you strengthen your capacity to meet your own needs."
+            },
+            {
+                day: 8,
+                title: "Connect to Something Bigger",
+                practice: "Spend 15 minutes in nature, or looking at the sky. Notice the vastness around you. Let yourself feel small in a comforting way. Breathe in the perspective.",
+                why: "When we're overstimulated, our world shrinks. Connecting to something bigger reminds us we're part of a larger whole and restores perspective.",
+                shift: "Regular connection reduces anxiety and increases resilience. You remember: there's more to life than the chaos in your head."
+            },
+            {
+                day: 9,
+                title: "Practice Saying No",
+                practice: "Identify one thing you've been saying yes to out of obligation. Practice saying no (or 'not right now') with kindness but firmness. Breathe through the discomfort.",
+                why: "Every yes to something that drains you is a no to your own wellbeing. Boundaries protect your energy so you can show up fully for what matters.",
+                shift: "Each boundary teaches others how to respect your limits and teaches you how to honor your needs."
+            },
+            {
+                day: 10,
+                title: "Integrate and Commit",
+                practice: "Review the past nine days. Choose 2-3 practices to continue beyond today. Write them down as commitments to yourself. Set up systems to support them.",
+                why: "Transformation comes from consistent small actions over time. Integration turns practices into habits.",
+                shift: "You're not returning to chaos—you're building a life where calm is your baseline, not the exception."
+            }
+        ];
+
+        // State management
+        let completedDays = JSON.parse(localStorage.getItem('triggerCalmProgress')) || [];
+        let hasFiredConfetti = false; // Prevents confetti spamming
+
+        // Initialization
+        function initApp() {
+            renderDays();
+            updateProgress();
+        }
+
+        // Render the Day Cards (Locking completely removed)
+        function renderDays() {
+            const container = document.getElementById('days-container');
+            container.innerHTML = '';
+
+            journeyData.forEach((data, index) => {
+                const isCompleted = completedDays.includes(data.day);
+
+                const cardHtml = `
+                    <div id="card-${data.day}" class="glass-card rounded-[1.5rem] day-card ${isCompleted ? 'completed' : ''}" onclick="toggleCard(${data.day})">
+                        
+                        <!-- Header (Always visible) -->
+                        <div class="h-20 px-6 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full ${isCompleted ? 'bg-[#A3B1A6]/20 text-[#8C9B90]' : 'bg-white text-brand-dark shadow-sm'} flex items-center justify-center font-bold text-sm">
+                                    ${data.day}
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-stone-800">Day ${data.day}</h4>
+                                    <p class="text-[10px] uppercase tracking-wider text-stone-500">${data.title}</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Checkbox Status -->
+                            <div class="flex items-center" onclick="event.stopPropagation();">
+                                <div class="checkbox-wrapper-12">
+                                    <div class="cbx">
+                                        <input type="checkbox" id="cbx-${data.day}" onchange="toggleComplete(${data.day})" ${isCompleted ? 'checked' : ''}>
+                                        <label for="cbx-${data.day}"></label>
+                                        <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+                                            <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expanded Content -->
+                        <div class="px-6 pb-8 pt-4 border-t border-stone-100 cursor-text" onclick="event.stopPropagation();">
+                            <div class="mb-6">
+                                <h5 class="text-[10px] font-bold tracking-widest text-[#A3B1A6] uppercase mb-2">Your Practice</h5>
+                                <p class="text-sm text-stone-600 leading-relaxed bg-white/50 p-4 rounded-xl border border-white">${data.practice}</p>
+                            </div>
+                            <div class="mb-6">
+                                <h5 class="text-[10px] font-bold tracking-widest text-[#D5C1DF] uppercase mb-2">Why This Matters</h5>
+                                <p class="text-sm text-stone-600 leading-relaxed">${data.why}</p>
+                            </div>
+                            <div>
+                                <h5 class="text-[10px] font-bold tracking-widest text-[#E3C683] uppercase mb-2">Small Shift, Big Result</h5>
+                                <p class="text-sm text-stone-600 leading-relaxed italic border-l-2 border-[#E3C683] pl-3">${data.shift}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHtml);
+            });
+        }
+
+        // Toggle Expand/Collapse of a card
+        function toggleCard(dayNum) {
+            const card = document.getElementById(`card-${dayNum}`);
+            const currentlyExpanded = document.querySelector('.day-card.expanded');
+            
+            // Close the current one if it's not the one we just clicked
+            if (currentlyExpanded && currentlyExpanded !== card) {
+                currentlyExpanded.classList.remove('expanded');
+            }
+            
+            card.classList.toggle('expanded');
+            
+            // Provide a tiny physical tap feeling
+            if (navigator.vibrate) navigator.vibrate(10);
+        }
+
+        // Handle Checkbox Toggle
+        function toggleComplete(dayNum) {
+            const isCompleted = completedDays.includes(dayNum);
+            
+            if (isCompleted) {
+                // Remove from completed
+                completedDays = completedDays.filter(d => d !== dayNum);
+            } else {
+                // Add to completed
+                completedDays.push(dayNum);
+            }
+            
+            // Save to Local Storage
+            localStorage.setItem('triggerCalmProgress', JSON.stringify(completedDays));
+            
+            // Vibrate for success
+            if (navigator.vibrate && !isCompleted) navigator.vibrate([15, 50, 15]);
+
+            updateProgress();
+            
+            // Small delay before re-rendering so the checkbox animation can play
+            setTimeout(() => {
+                renderDays();
+            }, 500);
+        }
+
+        // Fire Pastel Confetti
+        function firePastelConfetti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 100 };
+            
+            // Brand Pastel Colors
+            var pastelColors = ['#A3B1A6', '#D5C1DF', '#E8C5C8', '#F2DFB3', '#BBD1DF'];
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                
+                // Fire from both sides
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+                    colors: pastelColors
+                }));
+                confetti(Object.assign({}, defaults, { 
+                    particleCount, 
+                    origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+                    colors: pastelColors
+                }));
+            }, 250);
+        }
+
+        // Update the Progress Bar
+        function updateProgress() {
+            const totalComplete = completedDays.length;
+            const percentage = (totalComplete / 10) * 100;
+            
+            document.getElementById('days-completed').innerText = totalComplete;
+            document.getElementById('progress-bar-fill').style.width = `${percentage}%`;
+
+            // Trigger Confetti Celebration if all 10 are done!
+            if (totalComplete === 10 && !hasFiredConfetti) {
+                hasFiredConfetti = true;
+                setTimeout(firePastelConfetti, 500); // Slight delay so the checkbox fills first
+            } else if (totalComplete < 10) {
+                hasFiredConfetti = false; // Reset it so it can fire again if they untick and retick
+            }
+        }
+
+        // Run on load
+        initApp();
+    </script>
+</body>
+</html>
